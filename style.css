@@ -1,21 +1,26 @@
 body {
     background-color: rgb(58, 60, 60);
+    height: 100vh;
+    overflow: hidden;
 }
 
 /* Day progress bar (minimal, 1-2px) */
 #day-progress {
     position: fixed;
-    bottom: 35px;
+    bottom: 25px;
     left: 50%;
     transform: translateX(-50%);
     width: 80vw;
     max-width: 1100px;
     height: 2px;
-    pointer-events: none;
+    /* pointer-events: none; */
     z-index: 9999;
     background: rgba(0,0,0,0.25); /* darker track for empty bar */
     border-radius: 2px;
     overflow: hidden;
+    border-top: 15px solid transparent;
+    border-bottom: 15px solid transparent;
+    background-clip: content-box;
 }
 
 #day-progress .fill {
@@ -44,3 +49,29 @@ body {
         transition: none;
     }
 } */
+
+/* Fixed tooltip centered above the progress bar */
+#day-tooltip {
+    position: fixed;
+    bottom: 55px;
+    left: 50%;
+    transform: translateX(-50%) translateY(6px);
+    background: rgba(0,0,0,0.35);
+    color: #fff;
+    padding: 6px 10px;
+    font-size: 12px;
+    line-height: 1;
+    border-radius: 6px;
+    box-shadow: 0 2px 8px rgba(49, 39, 39, 0.25);
+    opacity: 0;
+    pointer-events: none;
+    transition: opacity 160ms ease, transform 160ms ease;
+    white-space: nowrap;
+    z-index: 10000;
+}
+
+/* Show tooltip when the progress bar is hovered (doesn't follow cursor) */
+#day-progress:hover + #day-tooltip {
+    opacity: 1;
+    transform: translateX(-50%) translateY(0);
+}

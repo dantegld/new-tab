@@ -1,6 +1,7 @@
     (function(){
         const bar = document.getElementById('day-progress');
         const fill = bar.querySelector('.fill');
+        const tooltip = document.getElementById('day-tooltip');
 
         function percentOfDay() {
             const DATE_IN_MS = 86400000;
@@ -15,9 +16,16 @@
             const p = percentOfDay();
             fill.style.transform = 'scaleX(' + (p / 100) + ')';
             bar.setAttribute('aria-valuenow', Math.round(p));
+            if (tooltip) tooltip.textContent = Math.round(p) + '%';
         }
 
         setTimeout(update, 50)
+
+        // Toggle ARIA on hover for accessibility
+        if (bar && tooltip) {
+            bar.addEventListener('mouseenter', function(){ tooltip.setAttribute('aria-hidden', 'false'); });
+            bar.addEventListener('mouseleave', function(){ tooltip.setAttribute('aria-hidden', 'true'); });
+        }
 
         // Align updates to the next minute, then update every minute
         const now = new Date();
