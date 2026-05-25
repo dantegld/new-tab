@@ -39,8 +39,8 @@ body {
     border-radius: 2px;
 }
 
-@media (prefers-reduced-motion: reduce) {
+/* @media (prefers-reduced-motion: reduce) {
     #day-progress .fill {
         transition: none;
     }
-}
+} */
