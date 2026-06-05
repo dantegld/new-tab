@@ -56,12 +56,7 @@
         }
 
         setTimeout(update, 50)
-
-        if (bar && tooltip) {
-            bar.addEventListener('mouseenter', function(){ tooltip.setAttribute('aria-hidden', 'false'); });
-            bar.addEventListener('mouseleave', function(){ tooltip.setAttribute('aria-hidden', 'true'); });
-        }
-
+        
         const now = new Date();
         const msToNextMinute = (60 - now.getSeconds()) * 1000 - now.getMilliseconds();
         setTimeout(function(){
