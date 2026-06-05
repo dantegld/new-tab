@@ -12,15 +12,15 @@
             
             const totalMsSinceMidnight = (h * 3600 + m * 60 + s) * 1000 + ms;
             
-            const activeStartMs = 7 * 3600 * 1000;
-            const activeEndMs = 23 * 3600 * 1000;
-            const activeDurationMs = activeEndMs - activeStartMs;
-            const offDurationMs = (24 * 3600 * 1000) - activeDurationMs;
+            const START_TIME = 25200000; //7u (7*3600*1000)
+            const END_TIME = 82800000; //23u (23*3600*1000)
+            const ACTIVE_TIME = 57600000; //16u (23u-7u)
+            const OFF_TIME = 28800000; //8u (24u-16u)
             
             let p = 0;
             
-            if (totalMsSinceMidnight >= activeStartMs && totalMsSinceMidnight < activeEndMs) {
-                p = ((totalMsSinceMidnight - activeStartMs) / activeDurationMs) * 100;
+            if (totalMsSinceMidnight >= START_TIME && totalMsSinceMidnight < END_TIME) {
+                p = ((totalMsSinceMidnight - START_TIME) / ACTIVE_TIME) * 100;
                 bar.classList.remove('off-hours');
                 if (tooltip) tooltip.textContent = Math.round(p) + '%';
             } else {
@@ -28,15 +28,15 @@
                 let msSince11PM = 0;
                 let msUntil7AM = 0;
                 
-                if (totalMsSinceMidnight >= activeEndMs) {
-                    msSince11PM = totalMsSinceMidnight - activeEndMs;
-                    msUntil7AM = (24 * 3600 * 1000) - totalMsSinceMidnight + activeStartMs;
+                if (totalMsSinceMidnight >= END_TIME) {
+                    msSince11PM = totalMsSinceMidnight - END_TIME;
+                    msUntil7AM = (24 * 3600 * 1000) - totalMsSinceMidnight + START_TIME;
                 } else {
-                    msSince11PM = totalMsSinceMidnight + (24 * 3600 * 1000 - activeEndMs);
-                    msUntil7AM = activeStartMs - totalMsSinceMidnight;
+                    msSince11PM = totalMsSinceMidnight + (24 * 3600 * 1000 - END_TIME);
+                    msUntil7AM = START_TIME - totalMsSinceMidnight;
                 }
                 
-                p = 100 - ((msSince11PM / offDurationMs) * 100);
+                p = 100 - ((msSince11PM / OFF_TIME) * 100);
                 
                 const hrsLeft = Math.floor(msUntil7AM / (3600 * 1000));
                 const minsLeft = Math.floor((msUntil7AM % (3600 * 1000)) / (60 * 1000));
