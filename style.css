@@ -53,16 +53,6 @@ body {
     }
 }
 
-/*
-  Pause any infinite/continuous CSS animations when the tab is not focused.
-  This prevents background GPU/CPU usage when the new-tab page is in the background.
-*/
-@media (not (prefers-reduced-motion: reduce)) {
-  body:not(:focus-within) #day-progress .fill {
-    animation-play-state: paused;
-  }
-}
-
 #day-tooltip {
     position: fixed;
     bottom: 55px;
