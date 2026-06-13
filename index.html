@@ -9,11 +9,50 @@
     <title>New Tab</title>
 </head>
 <body>
-    <div id="day-progress" role="progressbar" aria-label="Day progress" aria-valuemin="0" aria-valuemax="100" aria-valuenow="0">
-        <div class="fill" aria-hidden="true"></div>
+
+    <div id="settings" class="hide">
+        <div>
+            <h2>Settings</h2>
+            <hr>
+        </div> 
+        <div id="settings-color">
+            <h3>Color</h3>
+            <form class="settings-form" id="settings-color-form">
+                <div>
+                    <input type="radio" id="purple" name="color" value="progress-bar-default" checked>
+                    <label for="purple">Purple(default)</label>
+                </div>
+                <div>
+                    <input type="radio" id="green" name="color" value="progress-bar-green">
+                    <label for="green">Green</label>
+                </div>
+                <div>
+                    <input type="radio" id="blue" name="color" value="progress-bar-blue">
+                    <label for="blue">Blue</label>
+                </div>
+            </form>
+        </div>
+        <br>
+        <!-- <div id="settings-time">
+            <h3>Time Preferece</h3>
+            <form class="settings-form" id="settings-time-form" action="">
+                <div>
+                    <input type="radio" id="7-23" name="time-preference" value="7-23" checked>
+                    <label for="purple">7am-11pm</label>
+                </div>
+                <div>
+                    <input type="radio" id="purple" name="color" value="purple">
+                    <label for="purple">7am-11pm</label>
+                </div>
+            </form>
+        </div> -->
     </div>
 
-    <div id="day-tooltip" aria-hidden="true">0%</div>
+    <div id="day-progress" role="progressbar" aria-label="Day progress" aria-valuemin="0" aria-valuemax="100" aria-valuenow="0">
+        <div id="fill" class="fill" aria-hidden="true"></div>
+    </div>
+
+    <div id="day-tooltip" class="prevent-select" aria-hidden="true">0%</div>
 
     <script src="script.js"></script>
 </body>
